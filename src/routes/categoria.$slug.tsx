@@ -1,10 +1,13 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { z } from "zod";
 import { Layout } from "@/components/Layout";
 import { ProductCard } from "@/components/ProductCard";
 import { CATEGORIES, getByCategory, type Category } from "@/lib/products";
 
 export const Route = createFileRoute("/categoria/$slug")({
+  validateSearch: z.object({ promo: z.boolean().optional() }),
+
   head: ({ params }) => {
     const cat = CATEGORIES.find((c) => c.slug === params.slug);
     const title = cat ? `${cat.label} — TACTICAL TRAINING` : "Categoria";
