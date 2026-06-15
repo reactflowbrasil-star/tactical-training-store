@@ -1,25 +1,25 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Youtube } from "lucide-react";
 import { Logo } from "./Logo";
 import { CATEGORIES } from "@/lib/products";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-white/80 mt-20">
+    <footer className="mt-20 bg-ink text-white/80">
       <div className="border-t-4 border-brand" />
-      <div className="container mx-auto px-4 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="container mx-auto grid grid-cols-2 gap-10 px-4 py-14 md:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
           <Logo />
           <p className="mt-4 text-sm leading-relaxed">
-            Equipamentos táticos para caça, pesca e camping. Performance, durabilidade e estilo
+            Equipamentos taticos para caca, pesca e camping. Performance, durabilidade e estilo
             militar para quem encara o outdoor de verdade.
           </p>
-          <div className="flex gap-3 mt-5">
-            {[Instagram, Facebook, Youtube].map((Icon, i) => (
+          <div className="mt-5 flex gap-3">
+            {[Instagram, Facebook, Youtube].map((Icon, index) => (
               <a
-                key={i}
+                key={index}
                 href="#"
-                className="w-9 h-9 flex items-center justify-center bg-ink-2 hover:bg-brand transition"
+                className="flex h-9 w-9 items-center justify-center bg-ink-2 transition hover:bg-brand"
                 aria-label="Social"
               >
                 <Icon size={16} />
@@ -29,18 +29,23 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-display italic font-bold uppercase tracking-wider text-sm mb-4">
+          <h4 className="mb-4 text-sm font-display italic font-bold uppercase tracking-wider text-white">
             Categorias
           </h4>
           <ul className="space-y-2 text-sm">
-            {CATEGORIES.map((c) => (
-              <li key={c.slug}>
+            <li>
+              <Link to="/produtos" className="transition hover:text-brand">
+                Todos os produtos
+              </Link>
+            </li>
+            {CATEGORIES.map((category) => (
+              <li key={category.slug}>
                 <Link
                   to="/categoria/$slug"
-                  params={{ slug: c.slug }}
-                  className="hover:text-brand transition"
+                  params={{ slug: category.slug }}
+                  className="transition hover:text-brand"
                 >
-                  {c.label}
+                  {category.label}
                 </Link>
               </li>
             ))}
@@ -48,39 +53,67 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-display italic font-bold uppercase tracking-wider text-sm mb-4">
+          <h4 className="mb-4 text-sm font-display italic font-bold uppercase tracking-wider text-white">
             Institucional
           </h4>
           <ul className="space-y-2 text-sm">
-            <li><a className="hover:text-brand transition" href="#">Quem somos</a></li>
-            <li><a className="hover:text-brand transition" href="#">Política de troca</a></li>
-            <li><a className="hover:text-brand transition" href="#">Política de privacidade</a></li>
-            <li><a className="hover:text-brand transition" href="#">Termos de uso</a></li>
-            <li><a className="hover:text-brand transition" href="#">Frete e prazos</a></li>
+            <li>
+              <Link className="transition hover:text-brand" to="/sobre">
+                Quem somos
+              </Link>
+            </li>
+            <li>
+              <Link className="transition hover:text-brand" to="/contato">
+                Contato
+              </Link>
+            </li>
+            <li>
+              <Link className="transition hover:text-brand" to="/politica-de-privacidade">
+                Politica de privacidade
+              </Link>
+            </li>
+            <li>
+              <Link className="transition hover:text-brand" to="/termos-de-uso">
+                Termos de uso
+              </Link>
+            </li>
+            <li>
+              <Link className="transition hover:text-brand" to="/admin/login">
+                Area administrativa
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white font-display italic font-bold uppercase tracking-wider text-sm mb-4">
+          <h4 className="mb-4 text-sm font-display italic font-bold uppercase tracking-wider text-white">
             Contato
           </h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex items-start gap-2"><Phone size={15} className="mt-0.5 text-brand" /> (11) 4002-8922</li>
-            <li className="flex items-start gap-2"><Mail size={15} className="mt-0.5 text-brand" /> contato@tacticaltraining.com.br</li>
-            <li className="flex items-start gap-2"><MapPin size={15} className="mt-0.5 text-brand" /> São Paulo — SP</li>
+            <li className="flex items-start gap-2">
+              <Phone size={15} className="mt-0.5 text-brand" /> (11) 4002-8922
+            </li>
+            <li className="flex items-start gap-2">
+              <Mail size={15} className="mt-0.5 text-brand" /> contato@tacticaltraining.com.br
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin size={15} className="mt-0.5 text-brand" /> Sao Paulo - SP
+            </li>
           </ul>
           <div className="mt-5">
-            <div className="text-xs uppercase tracking-widest mb-2 text-white/60">Pagamento</div>
+            <div className="mb-2 text-xs uppercase tracking-widest text-white/60">Pagamento</div>
             <div className="flex flex-wrap gap-1.5">
-              {["PIX", "VISA", "MASTER", "ELO", "AMEX", "BOLETO"].map((p) => (
-                <span key={p} className="text-[10px] font-bold bg-ink-2 px-2 py-1 border border-ink-3">{p}</span>
+              {["PIX", "VISA", "MASTER", "ELO", "AMEX", "BOLETO"].map((payment) => (
+                <span key={payment} className="border border-ink-3 bg-ink-2 px-2 py-1 text-[10px] font-bold">
+                  {payment}
+                </span>
               ))}
             </div>
           </div>
         </div>
       </div>
       <div className="bg-ink-2 py-4 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} TACTICAL TRAINING — Todos os direitos reservados.
+        © {new Date().getFullYear()} TACTICAL TRAINING - Todos os direitos reservados.
       </div>
     </footer>
   );

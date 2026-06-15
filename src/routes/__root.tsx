@@ -78,6 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#0d0d0d" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-title", content: "Tactical" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { title: "TACTICAL TRAINING — Caça, Pesca e Camping" },
       { name: "description", content: "Loja oficial TACTICAL TRAINING. Equipamentos táticos para caça, pesca e camping com performance e durabilidade militar." },
       { property: "og:title", content: "TACTICAL TRAINING — Caça, Pesca e Camping" },
@@ -91,6 +96,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/icon.svg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -107,11 +115,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
       <body>
+        {import.meta.env.DEV && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function () {
+                  if (!('serviceWorker' in navigator)) return;
+                  var key = 'tt-dev-sw-cleaned-v1';
+                  Promise.all([
+                    navigator.serviceWorker.getRegistrations().then(function (items) {
+                      return Promise.all(items.map(function (item) { return item.unregister(); }));
+                    }),
+                    'caches' in window
+                      ? caches.keys().then(function (keys) {
+                          return Promise.all(keys.filter(function (name) {
+                            return name.indexOf('tactical-training') === 0;
+                          }).map(function (name) { return caches.delete(name); }));
+                        })
+                      : Promise.resolve([])
+                  ]).then(function (result) {
+                    var removed = result.some(function (items) {
+                      return Array.isArray(items) && items.some(Boolean);
+                    });
+                    if (removed && sessionStorage.getItem(key) !== '1') {
+                      sessionStorage.setItem(key, '1');
+                      location.reload();
+                    }
+                  }).catch(function () {});
+                })();
+              `,
+            }}
+          />
+        )}
         {children}
         <Scripts />
       </body>
@@ -121,6 +161,33 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    if (typeof navigator === "undefined" || !("serviceWorker" in navigator)) return;
+
+    if (import.meta.env.PROD) {
+      navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+      return;
+    }
+
+    navigator.serviceWorker
+      .getRegistrations()
+      .then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
+      .catch(() => undefined);
+
+    if ("caches" in window) {
+      window.caches
+        .keys()
+        .then((keys) =>
+          Promise.all(
+            keys
+              .filter((key) => key.startsWith("tactical-training"))
+              .map((key) => window.caches.delete(key)),
+          ),
+        )
+        .catch(() => undefined);
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -9,14 +9,58 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as ContaRouteImport } from './routes/conta'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CarrinhoRouteImport } from './routes/carrinho'
 import { Route as BuscarRouteImport } from './routes/buscar'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoIdRouteImport } from './routes/produto.$id'
 import { Route as CategoriaSlugRouteImport } from './routes/categoria.$slug'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminProdutosRouteImport } from './routes/admin.produtos'
+import { Route as AdminPedidosRouteImport } from './routes/admin.pedidos'
+import { Route as AdminMidiaRouteImport } from './routes/admin.midia'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminIaCopywriterRouteImport } from './routes/admin.ia-copywriter'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminConfiguracoesRouteImport } from './routes/admin.configuracoes'
+import { Route as AdminCategoriasRouteImport } from './routes/admin.categorias'
+import { Route as AdminBannersRouteImport } from './routes/admin.banners'
+import { Route as AdminProdutosNovoRouteImport } from './routes/admin.produtos.novo'
+import { Route as AdminProdutosEditarIdRouteImport } from './routes/admin.produtos.editar.$id'
 
+const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
+  id: '/termos-de-uso',
+  path: '/termos-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosRoute = ProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContaRoute = ContaRouteImport.update({
   id: '/conta',
   path: '/conta',
@@ -37,6 +81,11 @@ const BuscarRoute = BuscarRouteImport.update({
   path: '/buscar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -52,77 +101,297 @@ const CategoriaSlugRoute = CategoriaSlugRouteImport.update({
   path: '/categoria/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProdutosRoute = AdminProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPedidosRoute = AdminPedidosRouteImport.update({
+  id: '/pedidos',
+  path: '/pedidos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMidiaRoute = AdminMidiaRouteImport.update({
+  id: '/midia',
+  path: '/midia',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminIaCopywriterRoute = AdminIaCopywriterRouteImport.update({
+  id: '/ia-copywriter',
+  path: '/ia-copywriter',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminConfiguracoesRoute = AdminConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriasRoute = AdminCategoriasRouteImport.update({
+  id: '/categorias',
+  path: '/categorias',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBannersRoute = AdminBannersRouteImport.update({
+  id: '/banners',
+  path: '/banners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProdutosNovoRoute = AdminProdutosNovoRouteImport.update({
+  id: '/novo',
+  path: '/novo',
+  getParentRoute: () => AdminProdutosRoute,
+} as any)
+const AdminProdutosEditarIdRoute = AdminProdutosEditarIdRouteImport.update({
+  id: '/editar/$id',
+  path: '/editar/$id',
+  getParentRoute: () => AdminProdutosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/buscar': typeof BuscarRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/conta': typeof ContaRoute
+  '/contato': typeof ContatoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/produtos': typeof ProdutosRoute
+  '/sobre': typeof SobreRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/categorias': typeof AdminCategoriasRoute
+  '/admin/configuracoes': typeof AdminConfiguracoesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/ia-copywriter': typeof AdminIaCopywriterRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/midia': typeof AdminMidiaRoute
+  '/admin/pedidos': typeof AdminPedidosRoute
+  '/admin/produtos': typeof AdminProdutosRouteWithChildren
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/produto/$id': typeof ProdutoIdRoute
+  '/admin/produtos/novo': typeof AdminProdutosNovoRoute
+  '/admin/produtos/editar/$id': typeof AdminProdutosEditarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/buscar': typeof BuscarRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/conta': typeof ContaRoute
+  '/contato': typeof ContatoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/produtos': typeof ProdutosRoute
+  '/sobre': typeof SobreRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/categorias': typeof AdminCategoriasRoute
+  '/admin/configuracoes': typeof AdminConfiguracoesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/ia-copywriter': typeof AdminIaCopywriterRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/midia': typeof AdminMidiaRoute
+  '/admin/pedidos': typeof AdminPedidosRoute
+  '/admin/produtos': typeof AdminProdutosRouteWithChildren
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/produto/$id': typeof ProdutoIdRoute
+  '/admin/produtos/novo': typeof AdminProdutosNovoRoute
+  '/admin/produtos/editar/$id': typeof AdminProdutosEditarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/buscar': typeof BuscarRoute
   '/carrinho': typeof CarrinhoRoute
   '/checkout': typeof CheckoutRoute
   '/conta': typeof ContaRoute
+  '/contato': typeof ContatoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/produtos': typeof ProdutosRoute
+  '/sobre': typeof SobreRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
+  '/admin/banners': typeof AdminBannersRoute
+  '/admin/categorias': typeof AdminCategoriasRoute
+  '/admin/configuracoes': typeof AdminConfiguracoesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/ia-copywriter': typeof AdminIaCopywriterRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/midia': typeof AdminMidiaRoute
+  '/admin/pedidos': typeof AdminPedidosRoute
+  '/admin/produtos': typeof AdminProdutosRouteWithChildren
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/categoria/$slug': typeof CategoriaSlugRoute
   '/produto/$id': typeof ProdutoIdRoute
+  '/admin/produtos/novo': typeof AdminProdutosNovoRoute
+  '/admin/produtos/editar/$id': typeof AdminProdutosEditarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/buscar'
     | '/carrinho'
     | '/checkout'
     | '/conta'
+    | '/contato'
+    | '/politica-de-privacidade'
+    | '/produtos'
+    | '/sobre'
+    | '/termos-de-uso'
+    | '/admin/banners'
+    | '/admin/categorias'
+    | '/admin/configuracoes'
+    | '/admin/dashboard'
+    | '/admin/ia-copywriter'
+    | '/admin/login'
+    | '/admin/midia'
+    | '/admin/pedidos'
+    | '/admin/produtos'
+    | '/admin/seo'
+    | '/admin/usuarios'
     | '/categoria/$slug'
     | '/produto/$id'
+    | '/admin/produtos/novo'
+    | '/admin/produtos/editar/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/buscar'
     | '/carrinho'
     | '/checkout'
     | '/conta'
+    | '/contato'
+    | '/politica-de-privacidade'
+    | '/produtos'
+    | '/sobre'
+    | '/termos-de-uso'
+    | '/admin/banners'
+    | '/admin/categorias'
+    | '/admin/configuracoes'
+    | '/admin/dashboard'
+    | '/admin/ia-copywriter'
+    | '/admin/login'
+    | '/admin/midia'
+    | '/admin/pedidos'
+    | '/admin/produtos'
+    | '/admin/seo'
+    | '/admin/usuarios'
     | '/categoria/$slug'
     | '/produto/$id'
+    | '/admin/produtos/novo'
+    | '/admin/produtos/editar/$id'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/buscar'
     | '/carrinho'
     | '/checkout'
     | '/conta'
+    | '/contato'
+    | '/politica-de-privacidade'
+    | '/produtos'
+    | '/sobre'
+    | '/termos-de-uso'
+    | '/admin/banners'
+    | '/admin/categorias'
+    | '/admin/configuracoes'
+    | '/admin/dashboard'
+    | '/admin/ia-copywriter'
+    | '/admin/login'
+    | '/admin/midia'
+    | '/admin/pedidos'
+    | '/admin/produtos'
+    | '/admin/seo'
+    | '/admin/usuarios'
     | '/categoria/$slug'
     | '/produto/$id'
+    | '/admin/produtos/novo'
+    | '/admin/produtos/editar/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   BuscarRoute: typeof BuscarRoute
   CarrinhoRoute: typeof CarrinhoRoute
   CheckoutRoute: typeof CheckoutRoute
   ContaRoute: typeof ContaRoute
+  ContatoRoute: typeof ContatoRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  ProdutosRoute: typeof ProdutosRoute
+  SobreRoute: typeof SobreRoute
+  TermosDeUsoRoute: typeof TermosDeUsoRoute
   CategoriaSlugRoute: typeof CategoriaSlugRoute
   ProdutoIdRoute: typeof ProdutoIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/termos-de-uso': {
+      id: '/termos-de-uso'
+      path: '/termos-de-uso'
+      fullPath: '/termos-de-uso'
+      preLoaderRoute: typeof TermosDeUsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos': {
+      id: '/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conta': {
       id: '/conta'
       path: '/conta'
@@ -151,6 +420,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuscarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -172,18 +448,169 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/produtos': {
+      id: '/admin/produtos'
+      path: '/produtos'
+      fullPath: '/admin/produtos'
+      preLoaderRoute: typeof AdminProdutosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pedidos': {
+      id: '/admin/pedidos'
+      path: '/pedidos'
+      fullPath: '/admin/pedidos'
+      preLoaderRoute: typeof AdminPedidosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/midia': {
+      id: '/admin/midia'
+      path: '/midia'
+      fullPath: '/admin/midia'
+      preLoaderRoute: typeof AdminMidiaRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ia-copywriter': {
+      id: '/admin/ia-copywriter'
+      path: '/ia-copywriter'
+      fullPath: '/admin/ia-copywriter'
+      preLoaderRoute: typeof AdminIaCopywriterRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/configuracoes': {
+      id: '/admin/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/admin/configuracoes'
+      preLoaderRoute: typeof AdminConfiguracoesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categorias': {
+      id: '/admin/categorias'
+      path: '/categorias'
+      fullPath: '/admin/categorias'
+      preLoaderRoute: typeof AdminCategoriasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/banners': {
+      id: '/admin/banners'
+      path: '/banners'
+      fullPath: '/admin/banners'
+      preLoaderRoute: typeof AdminBannersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/produtos/novo': {
+      id: '/admin/produtos/novo'
+      path: '/novo'
+      fullPath: '/admin/produtos/novo'
+      preLoaderRoute: typeof AdminProdutosNovoRouteImport
+      parentRoute: typeof AdminProdutosRoute
+    }
+    '/admin/produtos/editar/$id': {
+      id: '/admin/produtos/editar/$id'
+      path: '/editar/$id'
+      fullPath: '/admin/produtos/editar/$id'
+      preLoaderRoute: typeof AdminProdutosEditarIdRouteImport
+      parentRoute: typeof AdminProdutosRoute
+    }
   }
 }
 
+interface AdminProdutosRouteChildren {
+  AdminProdutosNovoRoute: typeof AdminProdutosNovoRoute
+  AdminProdutosEditarIdRoute: typeof AdminProdutosEditarIdRoute
+}
+
+const AdminProdutosRouteChildren: AdminProdutosRouteChildren = {
+  AdminProdutosNovoRoute: AdminProdutosNovoRoute,
+  AdminProdutosEditarIdRoute: AdminProdutosEditarIdRoute,
+}
+
+const AdminProdutosRouteWithChildren = AdminProdutosRoute._addFileChildren(
+  AdminProdutosRouteChildren,
+)
+
+interface AdminRouteChildren {
+  AdminBannersRoute: typeof AdminBannersRoute
+  AdminCategoriasRoute: typeof AdminCategoriasRoute
+  AdminConfiguracoesRoute: typeof AdminConfiguracoesRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminIaCopywriterRoute: typeof AdminIaCopywriterRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMidiaRoute: typeof AdminMidiaRoute
+  AdminPedidosRoute: typeof AdminPedidosRoute
+  AdminProdutosRoute: typeof AdminProdutosRouteWithChildren
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminBannersRoute: AdminBannersRoute,
+  AdminCategoriasRoute: AdminCategoriasRoute,
+  AdminConfiguracoesRoute: AdminConfiguracoesRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminIaCopywriterRoute: AdminIaCopywriterRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMidiaRoute: AdminMidiaRoute,
+  AdminPedidosRoute: AdminPedidosRoute,
+  AdminProdutosRoute: AdminProdutosRouteWithChildren,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   BuscarRoute: BuscarRoute,
   CarrinhoRoute: CarrinhoRoute,
   CheckoutRoute: CheckoutRoute,
   ContaRoute: ContaRoute,
+  ContatoRoute: ContatoRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  ProdutosRoute: ProdutosRoute,
+  SobreRoute: SobreRoute,
+  TermosDeUsoRoute: TermosDeUsoRoute,
   CategoriaSlugRoute: CategoriaSlugRoute,
   ProdutoIdRoute: ProdutoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

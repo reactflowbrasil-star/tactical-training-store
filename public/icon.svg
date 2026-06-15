@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Tactical Training">
+  <rect width="512" height="512" rx="96" fill="#0d0d0d"/>
+  <path d="M96 130h320v72H296v180h-80V202H96z" fill="#f0252b"/>
+  <path d="M112 398h288v42H112z" fill="#ffffff"/>
+</svg>

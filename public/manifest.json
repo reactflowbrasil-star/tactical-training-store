@@ -1,0 +1,20 @@
+{
+  "name": "TACTICAL TRAINING Store",
+  "short_name": "Tactical",
+  "description": "Loja virtual e painel administrativo Tactical Training.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "categories": ["shopping", "sports", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -77,6 +77,12 @@ export function Header() {
       {/* Category nav */}
       <nav className="hidden md:block bg-ink-2 border-t border-ink-3">
         <div className="container mx-auto px-4 flex items-center gap-1">
+          <Link
+            to="/produtos"
+            className="px-4 py-3 text-sm font-display italic font-bold uppercase tracking-wider text-white/80 hover:text-white hover:bg-brand transition"
+          >
+            Produtos
+          </Link>
           {CATEGORIES.map((c) => (
             <Link
               key={c.slug}
@@ -87,6 +93,12 @@ export function Header() {
               {c.label}
             </Link>
           ))}
+          <Link
+            to="/admin/login"
+            className="px-4 py-3 text-sm font-display italic font-bold uppercase tracking-wider text-white/60 hover:text-white hover:bg-ink transition"
+          >
+            Admin
+          </Link>
           <Link
             to="/categoria/$slug"
             params={{ slug: "caca" }}
@@ -113,6 +125,13 @@ export function Header() {
             </button>
           </form>
           <div className="flex flex-col">
+            <Link
+              to="/produtos"
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 text-sm font-display italic font-bold uppercase tracking-wider text-white border-t border-ink-3 hover:bg-brand"
+            >
+              Produtos
+            </Link>
             {CATEGORIES.map((c) => (
               <Link
                 key={c.slug}
@@ -124,6 +143,13 @@ export function Header() {
                 {c.label}
               </Link>
             ))}
+            <Link
+              to="/admin/login"
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 text-sm font-display italic font-bold uppercase tracking-wider text-white border-t border-ink-3 hover:bg-brand"
+            >
+              Admin
+            </Link>
           </div>
         </div>
       )}
